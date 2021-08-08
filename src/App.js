@@ -16,10 +16,13 @@ function App() {
 
   useEffect(() => {
     getAllGroceries();
-  })
+    
+  }, [])
+  
   async function getAllGroceries() {
     let allGroceries = await axios.get(`${URL}/api/groceryList/get-all-groceries`);
-    setGroceryArray(allGroceries.payload);
+    setGroceryArray(allGroceries.data.payload);
+    
   }
 
 
@@ -30,7 +33,6 @@ function App() {
 
   function handleGroceryInput(value) {
     setAddedGrocery(value);
-    console.log(value);
   }
 
   const groceryInputContext = {
@@ -41,12 +43,12 @@ function App() {
 
   const groceryListContext = {
     groceryArray,
+    getAllGroceries,
   }
-
   return (
     <div className="App">
       <Header />
-      
+
       <GroceryInputContext.Provider value={groceryInputContext}>
         <GroceryInput />
       </GroceryInputContext.Provider>

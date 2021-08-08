@@ -7,7 +7,7 @@ function GroceryInput() {
 
 
     const {
-        addedGrocery,
+        // addedGrocery,
         handleOnSubmit,
         handleGroceryInput,
     } = useContext(GroceryInputContext);
