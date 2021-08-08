@@ -7,8 +7,9 @@ function GroceryInput() {
 
 
     const {
+        addedGrocery,
         handleOnSubmit,
-        groceryInput,
+        handleGroceryInput,
     } = useContext(GroceryInputContext);
 
     return (
@@ -16,9 +17,9 @@ function GroceryInput() {
             <input 
                 type="text"
                 placeholder="add grocery"
-                onChange={groceryInput}
+                onChange={(e) => {handleGroceryInput(e.target.value)}}
             />
-            <button onClick={(e) => {handleOnSubmit()}}>Submit</button>
+            <button onClick={handleOnSubmit}>Submit</button>
         </div>
     )
 }

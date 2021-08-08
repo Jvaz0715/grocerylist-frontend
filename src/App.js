@@ -5,16 +5,23 @@ import { GroceryInputContext } from "./context/context";
 import './App.css';
 
 function App() {
-  function handleOnSubmit() {
-    console.log("add grocery button added")
+
+  const [addedGrocery, setAddedGrocery] = useState('')
+
+  function handleOnSubmit(e) {
+    e.preventDefault();
+    console.log(addedGrocery)
   }
 
-  function groceryInput(e) {
-    console.log(e.target.value)
+  function handleGroceryInput(value) {
+    setAddedGrocery(value);
+    console.log(value);
   }
+
   const groceryInputContext = {
+    addedGrocery,
     handleOnSubmit,
-    groceryInput,
+    handleGroceryInput,
   }
 
   return (
