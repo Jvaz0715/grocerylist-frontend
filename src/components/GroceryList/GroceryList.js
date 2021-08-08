@@ -4,10 +4,11 @@ import { GroceryListContext } from '../../context/context';
 import "./GroceryList.css"
 
 function GroceryList() {
+    
     const {
         groceryArray,
     } = useContext(GroceryListContext);
-    console.log(groceryArray)
+    
     return (
         <div className="grocerylist-container">
             <h3>Grocery List</h3>
