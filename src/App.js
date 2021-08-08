@@ -84,7 +84,7 @@ function App() {
     groceryArray,
     getAllGroceries,
     handleDeleteByID,
-  }
+  };
   return (
     <div className="App">
       <Header />
