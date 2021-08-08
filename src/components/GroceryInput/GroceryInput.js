@@ -7,20 +7,30 @@ function GroceryInput() {
 
 
     const {
-        // addedGrocery,
+        addedGrocery,
+        error,
+        errorMessage,
         handleOnSubmit,
         handleGroceryInput,
     } = useContext(GroceryInputContext);
 
     return (
-        <div className="grocery-input-container">
-            <input 
-                type="text"
-                placeholder="add grocery"
-                onChange={(e) => {handleGroceryInput(e.target.value)}}
-            />
-            <button onClick={handleOnSubmit}>Submit</button>
+        <div className="grocery-input-body">
+            <div className="grocery-input-container">
+                <input 
+                    type="text"
+                    placeholder="add grocery"
+                    value={addedGrocery}
+                    onChange={(e) => {handleGroceryInput(e.target.value)}}
+                />
+                <button onClick={handleOnSubmit}>Submit</button>
+            </div>
+            <div>
+                {error && errorMessage}
+            </div>
+            
         </div>
+        
     )
 }
 

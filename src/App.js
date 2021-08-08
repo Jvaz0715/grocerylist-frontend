@@ -19,7 +19,6 @@ function App() {
 
   useEffect(() => {
     getAllGroceries();
-    
   }, [])
   
   async function getAllGroceries() {
@@ -32,7 +31,7 @@ function App() {
 
     if(addedGrocery.length === 0) {
       setError(true);
-      setErrorMessage("Cannot create an empty grocery item")
+      setErrorMessage("An empty grocery cannot be added");
     } else {
       let groceryExists = groceryArray.findIndex((item) => 
         item.grocery.toLowerCase() === addedGrocery.toLowerCase()
@@ -48,12 +47,26 @@ function App() {
 
           setGroceryArray(newGroceryArray);
           setAddedGrocery("");
+          setError(false);
         } catch(e) {
-            console.log(e)
+          console.log(e)
         }
       } 
     }
   };
+
+  async function handleDeleteByID(id) {
+    try {
+      let deletedGrocery = await axios.delete(`${URL}/api/groceryList/delete-grocery-by-id/${id}`);
+
+      let filteredArray = groceryArray.filter(
+        (item) => item._id !== deletedGrocery.data.payload._id
+      );
+      setGroceryArray(filteredArray);
+    } catch(e) {
+      console.log(e);
+    }
+  }
 
   function handleGroceryInput(value) {
     setAddedGrocery(value);
@@ -61,6 +74,8 @@ function App() {
 
   const groceryInputContext = {
     addedGrocery,
+    error,
+    errorMessage,
     handleOnSubmit,
     handleGroceryInput,
   };
@@ -68,6 +83,7 @@ function App() {
   const groceryListContext = {
     groceryArray,
     getAllGroceries,
+    handleDeleteByID,
   }
   return (
     <div className="App">

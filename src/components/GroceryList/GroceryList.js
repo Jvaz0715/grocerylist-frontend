@@ -7,6 +7,7 @@ function GroceryList() {
     
     const {
         groceryArray,
+        handleDeleteByID,
     } = useContext(GroceryListContext);
     
     return (
@@ -22,7 +23,7 @@ function GroceryList() {
                             <div>
                                 <button className="purchase-button">Purchased</button>
                                 <button className="edit-button">Edit</button>
-                                <button className="delete-button">Delete</button>
+                                <button className="delete-button" onClick={() => handleDeleteByID(grocery._id)}>Delete</button>
                             </div>
                             
 
