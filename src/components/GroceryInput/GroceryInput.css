@@ -24,3 +24,7 @@
     font-weight: bold;
     font-size: 14px;
 }
+
+.errorMessage-text{
+    color: red;
+}

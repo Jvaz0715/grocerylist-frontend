@@ -26,7 +26,7 @@ function GroceryInput() {
                 <button onClick={handleOnSubmit}>Submit</button>
             </div>
             <div>
-                {error && errorMessage}
+                <p className="errorMessage-text">{error && errorMessage}</p>
             </div>
             
         </div>
