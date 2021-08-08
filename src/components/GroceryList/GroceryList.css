@@ -1,5 +1,5 @@
 .grocerylist-container {
-    border: 3px solid blue;
+    /* border: 3px solid blue; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7,20 +7,61 @@
 
 .grocerylist-container ul {
     list-style-type: none;
-    border: 2px solid red;
-    text-align: center;
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .grocerylist-container h3 {
-    border: 2px solid pink;
+    /* border: 2px solid pink; */
     text-align: center;
+}
+
+.grocerylist-container li {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-direction: row;
 }
 
 .grocery-text {
     margin-right: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: italic;
 }
 
 .grocerylist-container button {
-    border: 1px solid green;
+    border: 1px solid gainsboro;
+    border-radius: 20px;
     margin: 3px;
+    height: 30px;
+    color: white;
+
+}
+
+.grocerylist-container button:hover {
+    height: 34px;
+    background-color: gray;
+}
+
+.purchase-button {
+    background-color: rgba(221, 115, 221, 0.972);
+}
+
+.edit-button {
+    background-color: rgb(107, 190, 183);
+    width: 60px;
+}
+
+.delete-button {
+    background-color: rgb(212, 105, 105);
+    width: 60px;
+}
+
+.grocery-text-container {
+    /* border: 3px solid green; */
+    width: 150px;
+    
 }

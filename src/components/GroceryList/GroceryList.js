@@ -15,10 +15,15 @@ function GroceryList() {
                 {groceryArray.map((grocery, index) => {
                     return (
                         <li key={index}>
-                            <span className="grocery-text">{grocery.grocery}</span>
-                            <button>Purchased</button>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <div className="grocery-text-container">
+                                <p className="grocery-text">{grocery.grocery}</p>
+                            </div>
+                            <div>
+                                <button className="purchase-button">Purchased</button>
+                                <button className="edit-button">Edit</button>
+                                <button className="delete-button">Delete</button>
+                            </div>
+                            
 
                         </li>
                     )   
