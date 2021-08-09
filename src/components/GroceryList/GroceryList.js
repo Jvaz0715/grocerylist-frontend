@@ -7,8 +7,13 @@ function GroceryList() {
     
     const {
         groceryArray,
+        canEdit,
+        addedGrocery,
+        getAllGroceries,
         handleDeleteByID,
         handlePurchasedByID,
+        handleEditOnChange,
+        handleEditByID,
     } = useContext(GroceryListContext);
     
     return (
