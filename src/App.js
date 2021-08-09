@@ -112,7 +112,7 @@ function App() {
     try {
       let isPurchasedGroceryArray = await axios.get(`${URL}/api/groceryList/get-groceries-by-purchased?isPurchased=${isPurchased}`);
 
-      // setGroceryArray(isPurchasedGroceryArray)
+      setGroceryArray(isPurchasedGroceryArray.data.payload)
 
     } catch (e) {
       console.log(e);

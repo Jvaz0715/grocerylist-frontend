@@ -49,7 +49,19 @@ function GroceryInput() {
                     </li>
 
                     <li>
-                        
+                        <button
+                            onClick={() => sortByPurchased("true")}
+                        >
+                            Sort by purchased
+                        </button>
+                    </li>
+
+                    <li>
+                        <button
+                            onClick={() => sortByPurchased("false")}
+                        >
+                            Sort by not purchased
+                        </button>
                     </li>
 
 
