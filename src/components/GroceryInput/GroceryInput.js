@@ -64,9 +64,6 @@ function GroceryInput() {
                         </button>
                     </li>
 
-
-
-
                 </ul>
             </div>
 
