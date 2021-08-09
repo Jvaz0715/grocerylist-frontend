@@ -1,18 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { GroceryListContext } from '../../context/context';
 
 import "./GroceryList.css"
 
 function GroceryList() {
-    
+
+    const [canEdit, setCanEdit] = useState(false);
+    const [editInput, setEditInput] = useState('');
+
+    function onHandleEditClick() {
+        setCanEdit(!canEdit);
+    }
+    function handleEditOnChange(event) {
+        setEditInput(event.target.value);
+    }
     const {
         groceryArray,
-        canEdit,
-        addedGrocery,
-        getAllGroceries,
         handleDeleteByID,
         handlePurchasedByID,
-        handleEditOnChange,
         handleEditByID,
     } = useContext(GroceryListContext);
     
@@ -26,27 +31,44 @@ function GroceryList() {
                             key={index}
                             className={`li-style ${grocery.isPurchased && "li-style-isPurchased"}`}
                         >
-                            
-                            <div className="grocery-text-container">
+                            {canEdit ? (
+                                <input
+                                    type="text"
+                                    value={editInput}
+                                    onChange={handleEditOnChange}
+                                    name="editInput"
+                                    id= {editInput._id}
+                                />
+                            ) : ( <div className="grocery-text-container">
                                 <p className="grocery-text">{grocery.grocery}</p>
-                            </div>
+                            </div>)}
+
 
 
                             <div>
+                                {canEdit ? (
+                                    <button 
+                                        className="edit-button"
+                                        onClick={() => handleEditByID(grocery._id)}
+                                    >
+                                        Submit
+                                    </button>
+                                ):(
+                                    <button 
+                                        className="edit-button"
+                                        onClick={onHandleEditClick}
+                                    >
+                                        Edit
+                                    </button>
+                                )}
+                                
+                                
                                 <button 
                                     className="purchase-button"
                                     onClick={() => handlePurchasedByID(grocery._id, grocery.isPurchased)}
                                 >
                                     Purchased
                                 </button>
-                                
-                                
-                                <button 
-                                    className="edit-button"
-                                >
-                                    Edit
-                                </button>
-                                
                                 
                                 <button
                                     className="delete-button" 
