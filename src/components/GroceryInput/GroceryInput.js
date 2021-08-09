@@ -4,14 +4,14 @@ import { GroceryInputContext } from '../../context/context';
 import'./GroceryInput.css';
 
 function GroceryInput() {
-
-
     const {
         addedGrocery,
         error,
         errorMessage,
         handleOnSubmit,
         handleGroceryInput,
+        sortByDate,
+        sortByPurchased,
     } = useContext(GroceryInputContext);
 
     return (
@@ -29,6 +29,35 @@ function GroceryInput() {
                 <p className="errorMessage-text">{error && errorMessage}</p>
             </div>
             
+
+            <div className="sorting-div">
+                <ul>
+                    <li>
+                        <button
+                            onClick={() => sortByDate("asc")}
+                        >
+                            Sort by date added - Oldest to Newest
+                        </button>
+                    </li>
+
+                    <li>
+                        <button
+                            onClick={() => sortByDate("desc")}
+                        >
+                            Sort by date added - Newest to Oldest
+                        </button>
+                    </li>
+
+                    <li>
+                        
+                    </li>
+
+
+
+
+                </ul>
+            </div>
+
         </div>
         
     )

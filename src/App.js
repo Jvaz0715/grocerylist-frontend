@@ -26,7 +26,7 @@ function App() {
   async function getAllGroceries() {
     let allGroceries = await axios.get(`${URL}/api/groceryList/get-all-groceries`);
     setGroceryArray(allGroceries.data.payload);
-  }
+  };
 
   async function handleOnSubmit(e) {
     e.preventDefault();
@@ -54,6 +54,26 @@ function App() {
           console.log(e)
         }
       } 
+    }
+  };
+
+  async function handleEditByID(id, editInput) {
+    try {
+      let editedGrocery = await axios.put(`${URL}/api/groceryList/update-grocery-by-id/${id}`, {
+        grocery: editInput
+      });
+
+      let updatedGroceryArray = groceryArray.map((item) => {
+        if (item._id === id) {
+          item.grocery = editedGrocery.data.payload.grocery;
+        }
+        return item;
+      });
+
+      setGroceryArray(updatedGroceryArray);
+
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -88,20 +108,27 @@ function App() {
     }
   };
 
-  async function handleEditByID(id, editInput) {
+  async function sortByPurchased(isPurchased) {
     try {
-      let editedGrocery = await axios.put(`${URL}/api/groceryList/update-grocery-by-id/${id}`, {grocery: editInput});
+      let isPurchasedGroceryArray = await axios.get(`${URL}/api/groceryList/get-groceries-by-purchased?isPurchased=${isPurchased}`);
 
-      let updatedGroceryArray = groceryArray.map((item) => {
-        if(item._id === id) {
-          item.grocery = editedGrocery.data.payload.grocery;
-        }
-        return item;
-      });
+      // setGroceryArray(isPurchasedGroceryArray)
 
-      setGroceryArray(updatedGroceryArray);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function sortByDate(sortOrder) {
+    try {
+      let sortedGroceries = await axios.get(
+        `${URL}/api/groceryList/get-groceries-by-sort?sort=${sortOrder}`
+      );
       
-    } catch(e) {
+      console.log(sortedGroceries.data.payload)
+      setGroceryArray(sortedGroceries.data.payload)
+
+    } catch (e) {
       console.log(e);
     }
   }
@@ -121,8 +148,7 @@ function App() {
   function onHandleEditSubmit(id) {
     onHandleEditClick();
     handleEditByID(id, editInput);
-  }
-
+  };
 
   const groceryInputContext = {
     addedGrocery,
@@ -130,6 +156,8 @@ function App() {
     errorMessage,
     handleOnSubmit,
     handleGroceryInput,
+    sortByDate,
+    sortByPurchased,
   };
 
   const groceryListContext = {
