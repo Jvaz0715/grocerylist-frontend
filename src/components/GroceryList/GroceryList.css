@@ -47,7 +47,7 @@
 }
 
 .purchase-button {
-    background-color: rgba(221, 115, 221, 0.972);
+    background-color: rgba(104, 156, 94, 0.972);
 }
 
 .edit-button {
@@ -64,4 +64,13 @@
     /* border: 3px solid green; */
     width: 150px;
     
+}
+
+.li-style {
+    display: inline-block;
+    font-size: 24px;
+}
+
+.li-style-isPurchased {
+    text-decoration: line-through;
 }

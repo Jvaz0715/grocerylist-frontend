@@ -66,11 +66,29 @@ function App() {
     } catch(e) {
       console.log(e);
     }
-  }
+  };
+
+  async function handlePurchasedByID(id, isPurchased) {
+    try{
+      let groceryIsPurchashedUpdated = await axios.put(`${URL}/api/groceryList/update-grocery-by-id/${id}`, { isPurchased: !isPurchased });
+
+      let updatedGroceryArray = groceryArray.map((item) => {
+        if (item._id === groceryIsPurchashedUpdated.data.payload._id) {
+          item.isPurchased = groceryIsPurchashedUpdated.data.payload.isPurchased;
+        }
+        return item;
+      });
+
+      setGroceryArray(updatedGroceryArray);
+
+    } catch(e) {
+      console.log(e);
+    }
+  };
 
   function handleGroceryInput(value) {
     setAddedGrocery(value);
-  }
+  };
 
   const groceryInputContext = {
     addedGrocery,
@@ -84,7 +102,9 @@ function App() {
     groceryArray,
     getAllGroceries,
     handleDeleteByID,
+    handlePurchasedByID,
   };
+  
   return (
     <div className="App">
       <Header />
