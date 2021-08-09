@@ -1,24 +1,37 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { GroceryListContext } from '../../context/context';
 
 import "./GroceryList.css"
 
 function GroceryList() {
 
-    const [canEdit, setCanEdit] = useState(false);
-    const [editInput, setEditInput] = useState('');
+    // const [canEdit, setCanEdit] = useState(false);
+    // const [editInput, setEditInput] = useState('');
 
-    function onHandleEditClick() {
-        setCanEdit(!canEdit);
-    }
-    function handleEditOnChange(event) {
-        setEditInput(event.target.value);
-    }
+    // function onHandleEditClick() {
+    //     setCanEdit(!canEdit);
+    // };
+
+    // function handleEditOnChange(event) {
+    //     setEditInput(event.target.value);
+    // };
+
+    // function onHandleEditSubmit(id) {
+    //     onHandleEditClick();
+    //     handleEditByID(id, editInput);
+    // }
+
     const {
-        groceryArray,
-        handleDeleteByID,
-        handlePurchasedByID,
-        handleEditByID,
+         groceryArray,
+         canEdit,
+         editInput,
+        //  getAllGroceries,
+         handleDeleteByID,
+         handlePurchasedByID,
+        //  handleEditByID,
+         handleEditOnChange,
+         onHandleEditSubmit,
+         onHandleEditClick,
     } = useContext(GroceryListContext);
     
     return (
@@ -34,10 +47,10 @@ function GroceryList() {
                             {canEdit ? (
                                 <input
                                     type="text"
-                                    value={editInput}
                                     onChange={handleEditOnChange}
+                                    value={editInput}
                                     name="editInput"
-                                    id= {editInput._id}
+                                    id={grocery._id}
                                 />
                             ) : ( <div className="grocery-text-container">
                                 <p className="grocery-text">{grocery.grocery}</p>
@@ -48,8 +61,8 @@ function GroceryList() {
                             <div>
                                 {canEdit ? (
                                     <button 
-                                        className="edit-button"
-                                        onClick={() => handleEditByID(grocery._id)}
+                                        className="submit-button"
+                                        onClick={() => onHandleEditSubmit(grocery._id)}
                                     >
                                         Submit
                                     </button>

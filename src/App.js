@@ -14,6 +14,8 @@ function App() {
   const [groceryArray, setGroceryArray] = useState([]);
   const [error, setError] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const [canEdit, setCanEdit] = useState(false);
+  const [editInput, setEditInput] = useState('');
 
   const URL = "http://localhost:3001";
 
@@ -108,6 +110,19 @@ function App() {
     setAddedGrocery(value);
   };
 
+  function onHandleEditClick() {
+     setCanEdit(!canEdit);
+  };
+
+  function handleEditOnChange(event) {
+    setEditInput(event.target.value);
+  };
+
+  function onHandleEditSubmit(id) {
+    onHandleEditClick();
+    handleEditByID(id, editInput);
+  }
+
 
   const groceryInputContext = {
     addedGrocery,
@@ -119,10 +134,15 @@ function App() {
 
   const groceryListContext = {
     groceryArray,
+    canEdit,
+    editInput,
     getAllGroceries,
     handleDeleteByID,
     handlePurchasedByID,
     handleEditByID,
+    handleEditOnChange,
+    onHandleEditSubmit,
+    onHandleEditClick,
   };
   
   return (
